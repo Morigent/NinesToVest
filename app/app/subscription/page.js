@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "Subscription Management",
-  description: "Manage your OripioFin subscription plan and billing details.",
+  description: "Manage your NinesToVest subscription plan and billing details.",
 };
 
 export default function SubscriptionPage() {

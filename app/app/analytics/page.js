@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "Portfolio Analytics",
-  description: "Deep-dive performance metrics and risk exposure analysis for your OripioFin portfolio.",
+  description: "Deep-dive performance metrics and risk exposure analysis for your NinesToVest portfolio.",
 };
 
 export default function AnalyticsPage() {

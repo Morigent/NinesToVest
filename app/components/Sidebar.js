@@ -11,6 +11,7 @@ const navItems = [
   { href: "/allocation",   icon: "pie_chart",         label: "Allocation" },
   { href: "/dca-settings", icon: "repeat",            label: "Recurring" },
   { href: "/subscription", icon: "payments",          label: "Subscriptions" },
+  { href: "/daily-recap",  icon: "today",             label: "Daily Recap" },
 ];
 
 const bottomItems = [
@@ -50,7 +51,7 @@ export default function Sidebar({ isOpen, onClose }) {
           </span>
         </div>
         <div>
-          <h1 className="font-headline-sm text-headline-sm font-bold text-primary">OripioFin</h1>
+          <h1 className="font-headline-sm text-headline-sm font-bold text-primary">NinesToVest</h1>
           <p className="font-label-md text-label-md text-on-surface-variant opacity-70">Institutional Grade</p>
         </div>
         {/* Close button — mobile only */}

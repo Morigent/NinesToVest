@@ -29,7 +29,7 @@ export default function TopBar({ searchPlaceholder = "Search markets, assets..."
 
   const initials = user?.initials ?? "JS";
   const name     = user?.name    ?? "Alex Sterling";
-  const email    = user?.email   ?? "alex@oripiofin.com";
+  const email    = user?.email   ?? "alex@ninestovest.com";
 
   return (
     <header className="flex items-center justify-between px-xl w-full sticky top-0 z-50 bg-surface/80 backdrop-blur-md h-16 border-b border-outline-variant">

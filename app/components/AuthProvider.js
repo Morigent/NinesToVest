@@ -2,7 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 
-const STORAGE_KEY = "oripiofin-auth";
+const STORAGE_KEY = "ninestovest-auth";
 
 // ─── Context ───────────────────────────────────────────────────────────────
 const AuthContext = createContext({
@@ -39,7 +39,7 @@ export function AuthProvider({ children }) {
       loginTime: new Date().toISOString(),
       user: {
         name:  userData.name  || "Alex Sterling",
-        email: userData.email || "alex@oripiofin.com",
+        email: userData.email || "alex@ninestovest.com",
         initials: (userData.name || "Alex Sterling")
           .split(" ")
           .map((w) => w[0])

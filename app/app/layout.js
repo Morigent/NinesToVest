@@ -5,11 +5,11 @@ import { AuthProvider } from "@/components/AuthProvider";
 
 export const metadata = {
   title: {
-    template: "%s | OripioFin",
-    default: "OripioFin | Institutional Precision",
+    template: "%s | NinesToVest",
+    default: "NinesToVest | Institutional Precision",
   },
   description:
-    "OripioFin — Institutional-grade DCA portfolio tracker. High-precision financial terminal designed for clarity.",
+    "NinesToVest — Institutional-grade DCA portfolio tracker. High-precision financial terminal designed for clarity.",
   keywords: ["DCA", "portfolio", "investment", "institutional", "finance"],
 };
 

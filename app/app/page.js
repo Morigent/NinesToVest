@@ -5,9 +5,9 @@ import LandingAuthRedirect from "@/components/LandingAuthRedirect";
 import LoginButton from "@/components/LoginButton";
 
 export const metadata = {
-  title: "OripioFin | Institutional Precision",
+  title: "NinesToVest | Institutional Precision",
   description:
-    "High-precision financial terminal designed for clarity. OripioFin strips away the noise, leaving you with institutional-grade data and execution tools.",
+    "High-precision financial terminal designed for clarity. NinesToVest strips away the noise, leaving you with institutional-grade data and execution tools.",
 };
 
 export default function LandingPage() {
@@ -18,7 +18,7 @@ export default function LandingPage() {
       {/* TopAppBar */}
       <header className="flex items-center justify-between px-xl w-full sticky top-0 z-50 bg-surface/80 backdrop-blur-md h-16 border-b border-outline-variant">
         <div className="flex items-center gap-md">
-          <span className="font-headline-md text-headline-md font-bold text-primary">OripioFin</span>
+          <span className="font-headline-md text-headline-md font-bold text-primary">NinesToVest</span>
           <div className="hidden md:flex items-center gap-lg ml-xl">
             <Link href="/dashboard" className="font-label-md text-label-md text-primary font-bold">Dashboard</Link>
             <Link href="/analytics" className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">Analytics</Link>
@@ -48,7 +48,7 @@ export default function LandingPage() {
               Invest without <span className="text-primary italic">distraction</span>.
             </h1>
             <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-xl">
-              High-precision financial terminal designed for clarity. OripioFin strips away the noise, leaving you with institutional-grade data and execution tools.
+              High-precision financial terminal designed for clarity. NinesToVest strips away the noise, leaving you with institutional-grade data and execution tools.
             </p>
             <div className="flex flex-wrap justify-center gap-md mb-32">
               <LoginButton className="px-xl py-md bg-primary text-on-primary rounded-xl font-bold hover:brightness-110 transition-all shadow-lg shadow-primary/10">
@@ -129,7 +129,7 @@ export default function LandingPage() {
                     <span className="material-symbols-outlined">repeat</span>
                   </div>
                   <h3 className="font-headline-sm text-headline-sm mb-sm">DCA Precision Reminders</h3>
-                  <p className="font-body-md text-on-surface-variant">Set your schedule and let OripioFin handle the timing. Non-intrusive notifications exactly when the market metrics align.</p>
+                  <p className="font-body-md text-on-surface-variant">Set your schedule and let NinesToVest handle the timing. Non-intrusive notifications exactly when the market metrics align.</p>
                 </div>
                 <div className="flex-1 w-full bg-surface-container rounded-xl p-md border border-outline-variant">
                   <div className="flex items-center justify-between mb-md">
@@ -246,7 +246,7 @@ export default function LandingPage() {
         <section className="py-32 px-margin text-center">
           <div className="max-w-2xl mx-auto glass-panel p-xl rounded-3xl border-dashed border-2 border-outline-variant">
             <h2 className="font-headline-md text-headline-md mb-md">Ready for absolute clarity?</h2>
-            <p className="font-body-md text-on-surface-variant mb-xl">Join over 12,000 institutional and high-net-worth investors managing their portfolios with OripioFin.</p>
+            <p className="font-body-md text-on-surface-variant mb-xl">Join over 12,000 institutional and high-net-worth investors managing their portfolios with NinesToVest.</p>
             <EmailCTA />
           </div>
         </section>

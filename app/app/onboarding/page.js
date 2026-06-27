@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "Onboarding",
-  description: "Set up your personalized OripioFin investment profile and DCA strategy.",
+  description: "Set up your personalized NinesToVest investment profile and DCA strategy.",
 };
 
 const steps = [
@@ -21,7 +21,7 @@ export default function OnboardingPage() {
     <div className="min-h-screen flex flex-col bg-background text-on-surface">
       {/* Header */}
       <header className="flex items-center justify-between px-xl h-16 border-b border-outline-variant bg-surface/80 backdrop-blur-md sticky top-0 z-50">
-        <span className="font-headline-sm text-headline-sm font-bold text-primary">OripioFin</span>
+        <span className="font-headline-sm text-headline-sm font-bold text-primary">NinesToVest</span>
         <Link href="/" className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">Exit Setup</Link>
       </header>
 

@@ -9,7 +9,7 @@ export function ThemeProvider({ children }) {
 
   // On mount, read saved preference
   useEffect(() => {
-    const saved = localStorage.getItem("oripiofin-theme") || "dark";
+    const saved = localStorage.getItem("ninestovest-theme") || "dark";
     setTheme(saved);
     applyTheme(saved);
   }, []);
@@ -27,7 +27,7 @@ export function ThemeProvider({ children }) {
     const next = theme === "dark" ? "light" : "dark";
     setTheme(next);
     applyTheme(next);
-    localStorage.setItem("oripiofin-theme", next);
+    localStorage.setItem("ninestovest-theme", next);
   }
 
   return (

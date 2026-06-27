@@ -2,9 +2,9 @@ export default function Footer() {
   return (
     <footer className="w-full mt-auto flex flex-col md:flex-row justify-between items-center px-xl gap-lg py-lg bg-surface-container-lowest border-t border-outline-variant">
       <div className="flex flex-col items-center md:items-start gap-xs">
-        <span className="font-label-md text-label-md font-bold text-on-surface">OripioFin</span>
+        <span className="font-label-md text-label-md font-bold text-on-surface">NinesToVest</span>
         <p className="font-body-md text-on-surface-variant text-[11px] opacity-80">
-          © 2024 OripioFin. Institutional Precision.
+          © 2024 NinesToVest. Institutional Precision.
         </p>
       </div>
       <div className="flex flex-wrap justify-center gap-lg">
