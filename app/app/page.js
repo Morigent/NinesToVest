@@ -1,5 +1,8 @@
 import Link from "next/link";
 import Footer from "@/components/Footer";
+import EmailCTA from "@/components/EmailCTA";
+import LandingAuthRedirect from "@/components/LandingAuthRedirect";
+import LoginButton from "@/components/LoginButton";
 
 export const metadata = {
   title: "OripioFin | Institutional Precision",
@@ -10,6 +13,8 @@ export const metadata = {
 export default function LandingPage() {
   return (
     <div className="selection:bg-primary-container selection:text-on-primary-container">
+      {/* Auth redirect — if already logged in, goes straight to /dashboard */}
+      <LandingAuthRedirect />
       {/* TopAppBar */}
       <header className="flex items-center justify-between px-xl w-full sticky top-0 z-50 bg-surface/80 backdrop-blur-md h-16 border-b border-outline-variant">
         <div className="flex items-center gap-md">
@@ -46,9 +51,9 @@ export default function LandingPage() {
               High-precision financial terminal designed for clarity. OripioFin strips away the noise, leaving you with institutional-grade data and execution tools.
             </p>
             <div className="flex flex-wrap justify-center gap-md mb-32">
-              <Link href="/dashboard" className="px-xl py-md bg-primary text-on-primary rounded-xl font-bold hover:brightness-110 transition-all shadow-lg shadow-primary/10">
+              <LoginButton className="px-xl py-md bg-primary text-on-primary rounded-xl font-bold hover:brightness-110 transition-all shadow-lg shadow-primary/10">
                 Launch Terminal
-              </Link>
+              </LoginButton>
               <button className="px-xl py-md border border-outline-variant text-on-surface rounded-xl font-bold hover:bg-surface-container transition-all">
                 View Institutions
               </button>
@@ -242,10 +247,7 @@ export default function LandingPage() {
           <div className="max-w-2xl mx-auto glass-panel p-xl rounded-3xl border-dashed border-2 border-outline-variant">
             <h2 className="font-headline-md text-headline-md mb-md">Ready for absolute clarity?</h2>
             <p className="font-body-md text-on-surface-variant mb-xl">Join over 12,000 institutional and high-net-worth investors managing their portfolios with OripioFin.</p>
-            <div className="flex flex-col sm:flex-row gap-md justify-center">
-              <input className="bg-surface-container border border-outline-variant rounded-xl px-md py-md focus:ring-2 focus:ring-primary outline-none min-w-[300px]" placeholder="Enter professional email" type="email" />
-              <button className="px-xl py-md bg-primary text-on-primary rounded-xl font-bold whitespace-nowrap">Get Access</button>
-            </div>
+            <EmailCTA />
           </div>
         </section>
       </main>

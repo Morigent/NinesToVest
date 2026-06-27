@@ -1,17 +1,178 @@
+"use client";
+
+import { useState } from "react";
 import AppShell from "@/components/AppShell";
 import Footer from "@/components/Footer";
 
-export const metadata = {
-  title: "Recurring DCA Settings",
-  description: "Configure and manage your recurring Dollar-Cost Averaging schedule and rules.",
-};
-
+// Static data — no client state needed here
 const schedules = [
-  { asset: "Bitcoin",  ticker: "BTC", freq: "Bi-Weekly",  amount: "$1,600", next: "Oct 24, 2024", status: "Active",  icon: "currency_bitcoin", color: "text-primary" },
-  { asset: "Ethereum", ticker: "ETH", freq: "Monthly",    amount: "$900",   next: "Nov 01, 2024", status: "Active",  icon: "diamond",          color: "text-tertiary" },
-  { asset: "Solana",   ticker: "SOL", freq: "Weekly",     amount: "$250",   next: "Oct 21, 2024", status: "Paused",  icon: "token",            color: "text-secondary" },
+  { asset: "Bitcoin",  ticker: "BTC", freq: "Bi-Weekly", amount: "$1,600", next: "Oct 24, 2024", status: "Active",  icon: "currency_bitcoin", color: "text-primary" },
+  { asset: "Ethereum", ticker: "ETH", freq: "Monthly",   amount: "$900",   next: "Nov 01, 2024", status: "Active",  icon: "diamond",          color: "text-tertiary" },
+  { asset: "Solana",   ticker: "SOL", freq: "Weekly",    amount: "$250",   next: "Oct 21, 2024", status: "Paused",  icon: "token",            color: "text-secondary" },
 ];
 
+// ─── Field-level error message ─────────────────────────────────────────────
+function FieldError({ message }) {
+  if (!message) return null;
+  return (
+    <p className="flex items-center gap-xs mt-xs text-[11px] text-error font-medium" role="alert">
+      <span className="material-symbols-outlined text-[14px]">error</span>
+      {message}
+    </p>
+  );
+}
+
+// ─── Create New Rule form with validation ──────────────────────────────────
+function CreateRuleForm() {
+  const [amount, setAmount]   = useState("");
+  const [date,   setDate]     = useState("");
+  const [errors, setErrors]   = useState({});
+  const [success, setSuccess] = useState(false);
+
+  function validate() {
+    const next = {};
+    if (!amount || Number(amount) <= 0)
+      next.amount = "Amount is required and must be greater than $0.";
+    if (!date)
+      next.date = "Please select a start date.";
+    else if (new Date(date) < new Date(new Date().toDateString()))
+      next.date = "Start date cannot be in the past.";
+    return next;
+  }
+
+  function handleSave(e) {
+    e.preventDefault();
+    const errs = validate();
+    setErrors(errs);
+    if (Object.keys(errs).length === 0) {
+      setSuccess(true);
+      setAmount("");
+      setDate("");
+      setTimeout(() => setSuccess(false), 3000);
+    }
+  }
+
+  function handleCancel() {
+    setAmount("");
+    setDate("");
+    setErrors({});
+    setSuccess(false);
+  }
+
+  // Input base class + error variant
+  const inputBase = "w-full bg-surface-container-low border rounded-xl px-md py-md font-body-md focus:ring-2 outline-none transition-all";
+  const inputOk   = "border-outline-variant focus:ring-primary";
+  const inputErr  = "border-error focus:ring-error bg-error/5";
+
+  return (
+    <div className="bento-card rounded-xl p-xl">
+      <h3 className="font-headline-sm text-headline-sm mb-lg">Create New Rule</h3>
+
+      {/* ── Success banner ─── */}
+      {success && (
+        <div className="flex items-center gap-md mb-lg px-md py-sm bg-primary/10 border border-primary/30 rounded-xl text-primary text-sm font-medium" role="status">
+          <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
+          DCA rule saved successfully!
+        </div>
+      )}
+
+      <form onSubmit={handleSave} noValidate>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-lg">
+
+          {/* Asset — select always has a value, no validation needed */}
+          <div>
+            <label htmlFor="rule-asset" className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider block mb-sm">
+              Asset
+            </label>
+            <select
+              id="rule-asset"
+              className={`${inputBase} ${inputOk} appearance-none`}
+            >
+              <option>Bitcoin (BTC)</option>
+              <option>Ethereum (ETH)</option>
+              <option>Solana (SOL)</option>
+            </select>
+          </div>
+
+          {/* Amount — required, > 0 */}
+          <div>
+            <label htmlFor="rule-amount" className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider block mb-sm">
+              Amount (USD)
+            </label>
+            <input
+              id="rule-amount"
+              type="number"
+              min="1"
+              placeholder="e.g. 500"
+              value={amount}
+              onChange={(e) => {
+                setAmount(e.target.value);
+                if (errors.amount) setErrors((p) => ({ ...p, amount: "" }));
+              }}
+              aria-invalid={!!errors.amount}
+              aria-describedby="rule-amount-error"
+              className={`${inputBase} ${errors.amount ? inputErr : inputOk}`}
+            />
+            <FieldError message={errors.amount} />
+          </div>
+
+          {/* Frequency — select always has a value */}
+          <div>
+            <label htmlFor="rule-freq" className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider block mb-sm">
+              Frequency
+            </label>
+            <select
+              id="rule-freq"
+              className={`${inputBase} ${inputOk} appearance-none`}
+            >
+              <option>Weekly</option>
+              <option>Bi-Weekly</option>
+              <option>Monthly</option>
+            </select>
+          </div>
+
+          {/* Start Date — required, not in the past */}
+          <div>
+            <label htmlFor="rule-date" className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider block mb-sm">
+              Start Date
+            </label>
+            <input
+              id="rule-date"
+              type="date"
+              value={date}
+              onChange={(e) => {
+                setDate(e.target.value);
+                if (errors.date) setErrors((p) => ({ ...p, date: "" }));
+              }}
+              aria-invalid={!!errors.date}
+              aria-describedby="rule-date-error"
+              className={`${inputBase} ${errors.date ? inputErr : inputOk}`}
+            />
+            <FieldError message={errors.date} />
+          </div>
+        </div>
+
+        <div className="mt-lg flex gap-md justify-end">
+          <button
+            type="button"
+            onClick={handleCancel}
+            className="px-xl py-md border border-outline-variant rounded-xl font-bold hover:bg-surface-container transition-all"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="px-xl py-md bg-primary text-on-primary rounded-xl font-bold hover:brightness-110 transition-all"
+          >
+            Save Rule
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+// ─── Page ──────────────────────────────────────────────────────────────────
 export default function DcaSettingsPage() {
   return (
     <AppShell searchPlaceholder="Search recurring rules...">
@@ -67,41 +228,10 @@ export default function DcaSettingsPage() {
             </div>
           </div>
 
-          {/* Create New Rule Form */}
-          <div className="bento-card rounded-xl p-xl">
-            <h3 className="font-headline-sm text-headline-sm mb-lg">Create New Rule</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-lg">
-              <div>
-                <label className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider block mb-sm">Asset</label>
-                <select className="w-full bg-surface-container-low border border-outline-variant rounded-xl px-md py-md font-body-md focus:ring-2 focus:ring-primary outline-none transition-all appearance-none">
-                  <option>Bitcoin (BTC)</option>
-                  <option>Ethereum (ETH)</option>
-                  <option>Solana (SOL)</option>
-                </select>
-              </div>
-              <div>
-                <label className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider block mb-sm">Amount (USD)</label>
-                <input type="number" placeholder="e.g. 500" className="w-full bg-surface-container-low border border-outline-variant rounded-xl px-md py-md font-body-md focus:ring-2 focus:ring-primary outline-none transition-all" />
-              </div>
-              <div>
-                <label className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider block mb-sm">Frequency</label>
-                <select className="w-full bg-surface-container-low border border-outline-variant rounded-xl px-md py-md font-body-md focus:ring-2 focus:ring-primary outline-none transition-all appearance-none">
-                  <option>Weekly</option>
-                  <option>Bi-Weekly</option>
-                  <option>Monthly</option>
-                </select>
-              </div>
-              <div>
-                <label className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider block mb-sm">Start Date</label>
-                <input type="date" className="w-full bg-surface-container-low border border-outline-variant rounded-xl px-md py-md font-body-md focus:ring-2 focus:ring-primary outline-none transition-all" />
-              </div>
-            </div>
-            <div className="mt-lg flex gap-md justify-end">
-              <button className="px-xl py-md border border-outline-variant rounded-xl font-bold hover:bg-surface-container transition-all">Cancel</button>
-              <button className="px-xl py-md bg-primary text-on-primary rounded-xl font-bold hover:brightness-110 transition-all">Save Rule</button>
-            </div>
-          </div>
+          {/* Create New Rule Form — with validation */}
+          <CreateRuleForm />
         </div>
+
         <Footer />
       </main>
     </AppShell>
