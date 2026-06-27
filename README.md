@@ -1,4 +1,4 @@
-﻿# OripioFin — Smart DCA Portfolio Tracker
+﻿# NineToVest — Smart DCA Portfolio Tracker
 
 > **Institutional-grade investment UI** — a collection of dark and light mode screen designs for a Dollar-Cost Averaging (DCA) portfolio management platform.
 
@@ -6,7 +6,7 @@
 
 ## Overview
 
-This project contains a set of standalone HTML UI screens for **OripioFin**, a financial product designed for the serious yet accessible investor. Each screen is a self-contained page built with **TailwindCSS** (CDN) and represents one feature area of the full application.
+This project contains a set of standalone HTML UI screens for **NineToVest**, a financial product designed for the serious yet accessible investor. Each screen is a self-contained page built with **TailwindCSS** (CDN) and represents one feature area of the full application.
 
 There are two visual themes across the screens:
 - **Light mode** — clean, professional surfaces with deep forest green accents
@@ -19,17 +19,17 @@ There are two visual themes across the screens:
 ```
 smart_dca_portfolio_tracker/
 │
-├── oripiofin_landing_page/              # Landing page — light theme
+├── NineToVest_landing_page/              # Landing page — light theme
 │   └── assets/screen.png
 │
-├── oripiofin_landing_page_dark/         # Landing page — dark theme
+├── NineToVest_landing_page_dark/         # Landing page — dark theme
 │   ├── index.html
 │   └── assets/screen.png
 │
-├── oripiofin_main_dashboard/            # Main dashboard — light theme
+├── NineToVest_main_dashboard/            # Main dashboard — light theme
 │   └── assets/screen.png
 │
-├── oripiofin_main_dashboard_dark/       # Main dashboard — dark theme
+├── NineToVest_main_dashboard_dark/       # Main dashboard — dark theme
 │   ├── index.html
 │   └── assets/screen.png
 │
@@ -91,8 +91,8 @@ smart_dca_portfolio_tracker/
 
 | Screen | Theme | HTML | Preview |
 |--------|-------|------|---------|
-| Landing Page | Dark | `oripiofin_landing_page_dark/index.html` | `assets/screen.png` |
-| Main Dashboard | Dark | `oripiofin_main_dashboard_dark/index.html` | `assets/screen.png` |
+| Landing Page | Dark | `NineToVest_landing_page_dark/index.html` | `assets/screen.png` |
+| Main Dashboard | Dark | `NineToVest_main_dashboard_dark/index.html` | `assets/screen.png` |
 | Investment Allocation | Dark | `investment_allocation_dark/index.html` | `assets/screen.png` |
 | Portfolio Analytics | Dark | `portfolio_analytics_dark/index.html` | `assets/screen.png` |
 | Transaction History | Dark | `transaction_history_dark/index.html` | `assets/screen.png` |
@@ -148,7 +148,7 @@ Simply open any screen in a browser:
 
 ```bash
 # Open directly in browser (Windows)
-start oripiofin_landing_page_dark/index.html
+start NineToVest_landing_page_dark/index.html
 
 # Or use a local dev server (e.g., VS Code Live Server extension)
 ```
