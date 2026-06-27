@@ -1,0 +1,188 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+/* ══════════════════════════════════════════════════════════════
+   DESIGN TOKENS — CSS Variables
+   Dark is the default (html.dark). Light overrides via html:not(.dark)
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Dark Theme (default) ──────────────────────────────────── */
+html.dark, html {
+  --c-surface:                    #051424;
+  --c-surface-container-lowest:   #010f1f;
+  --c-surface-container-low:      #0d1c2d;
+  --c-surface-container:          #122131;
+  --c-surface-container-high:     #1c2b3c;
+  --c-surface-container-highest:  #273647;
+  --c-on-surface:                 #d4e4fa;
+  --c-on-surface-variant:         #bec9c2;
+  --c-primary:                    #8bd6b6;
+  --c-on-primary:                 #003828;
+  --c-primary-container:          #065f46;
+  --c-on-primary-container:       #8bd6b7;
+  --c-outline:                    #89938d;
+  --c-outline-variant:            #3f4944;
+  --c-error:                      #ffb4ab;
+  --c-error-container:            #93000a;
+
+  /* UI-specific aliases */
+  --glass-bg:   rgba(18, 33, 49, 0.7);
+  --glass-border: #3f4944;
+  --bento-bg:   #122131;
+  --bento-border: #3f4944;
+  --bento-hover-border: #8bd6b6;
+  --grid-dot:   #3f4944;
+  --scrollbar-thumb: #273647;
+  --scrollbar-hover: #3f4944;
+  --slider-track: #122131;
+  --modal-overlay: rgba(1, 15, 31, 0.8);
+  --toast-bg: rgba(18, 33, 49, 0.97);
+}
+
+/* ── Light Theme ───────────────────────────────────────────── */
+html:not(.dark) {
+  --c-surface:                    #f4fdf7;
+  --c-surface-container-lowest:   #ffffff;
+  --c-surface-container-low:      #eef7f1;
+  --c-surface-container:          #e4f2e9;
+  --c-surface-container-high:     #d9ecdf;
+  --c-surface-container-highest:  #cee6d5;
+  --c-on-surface:                 #101f16;
+  --c-on-surface-variant:         #3a4d3e;
+  --c-primary:                    #1b6b51;
+  --c-on-primary:                 #ffffff;
+  --c-primary-container:          #a6f2d1;
+  --c-on-primary-container:       #002116;
+  --c-outline:                    #6b7d6f;
+  --c-outline-variant:            #b0cdb8;
+  --c-error:                      #ba1a1a;
+  --c-error-container:            #ffdad6;
+
+  --glass-bg:   rgba(244, 253, 247, 0.85);
+  --glass-border: #b0cdb8;
+  --bento-bg:   #eef7f1;
+  --bento-border: #b0cdb8;
+  --bento-hover-border: #1b6b51;
+  --grid-dot:   #b0cdb8;
+  --scrollbar-thumb: #c8e3cf;
+  --scrollbar-hover: #b0cdb8;
+  --slider-track: #d9ecdf;
+  --modal-overlay: rgba(16, 31, 22, 0.6);
+  --toast-bg: rgba(238, 247, 241, 0.97);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   BASE
+   ══════════════════════════════════════════════════════════════ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--c-surface);
+  color: var(--c-on-surface);
+  font-family: 'Work Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ── Material Symbols ──────────────────────────────────────── */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  user-select: none;
+}
+
+/* ── Glass Panel ───────────────────────────────────────────── */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* ── Bento Card ────────────────────────────────────────────── */
+.bento-card {
+  background-color: var(--bento-bg);
+  border: 1px solid var(--bento-border);
+  transition: border-color 0.3s ease, transform 0.2s ease, background-color 0.3s ease;
+}
+
+.bento-card:hover {
+  border-color: var(--bento-hover-border);
+}
+
+/* ── Data Grid Pattern ─────────────────────────────────────── */
+.data-grid-pattern {
+  background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* ── Custom Scrollbar ──────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--c-surface); }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-hover); }
+
+/* ── Range Slider ──────────────────────────────────────────── */
+input[type='range'] {
+  -webkit-appearance: none;
+  background: transparent;
+}
+input[type='range']::-webkit-slider-runnable-track {
+  background: var(--slider-track);
+  height: 6px;
+  border-radius: 3px;
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 18px;
+  width: 18px;
+  background: var(--c-primary);
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -6px;
+  box-shadow: 0 0 10px color-mix(in srgb, var(--c-primary) 40%, transparent);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+input[type='range']:hover::-webkit-slider-thumb,
+input[type='range']:focus::-webkit-slider-thumb {
+  transform: scale(1.25);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--c-primary) 60%, transparent);
+}
+
+/* ── Chart Grid Lines (SVG) ────────────────────────────────── */
+.chart-grid-line {
+  stroke: var(--c-outline-variant);
+  stroke-dasharray: 4;
+}
+
+/* ── Glass Card variant ────────────────────────────────────── */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 0.5rem;
+}
+
+/* ── Tonal layers ──────────────────────────────────────────── */
+.tonal-layer-1 { background-color: var(--c-surface-container-low);  border: 1px solid var(--c-outline-variant); }
+.tonal-layer-2 { background-color: var(--c-surface-container-high); border: 1px solid var(--c-outline-variant); }
+
+/* ── Modal Overlay ─────────────────────────────────────────── */
+.modal-overlay {
+  background-color: var(--modal-overlay);
+  backdrop-filter: blur(8px);
+}
+
+/* ── Theme Transition ──────────────────────────────────────── */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
+}
+
+/* Exclude transitions from animations that shouldn't inherit this */
+input[type='range']::-webkit-slider-thumb {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
